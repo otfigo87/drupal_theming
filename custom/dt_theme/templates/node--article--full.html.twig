@@ -67,9 +67,12 @@
  *
  */
 #}
+
+{{ dump() }}
+
 {{ attach_library('dt_theme/node') }}
 
-<article{{attributes.addClass(['node','type--'~node.bundle,'view-mode--'~view_mode, not node.isPublished ? 'unpublished'])}}>
+<article {{attributes.addClass(['node','type--'~node.bundle,'view-mode--'~view_mode, not node.isPublished ? 'unpublished'])}}>
 
 
   {{ title_prefix }}
@@ -83,7 +86,7 @@
   {% if display_submitted %}
     <footer>
       {{ author_picture }}
-      <div{{ author_attributes }}>
+      <div {{ author_attributes.addClass('author').setAttribute('id', 'author') }}>
         {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
         {{ metadata }}
       </div>
@@ -98,4 +101,10 @@
     {{ content }}
   </div>
 
+<h2>{{ label[0]['#context']['value'] }}</h2>
+<div class="comment-wrapper">
+  {{ content.field_image }}
+
+  {{ content['comment']}}
+</div>
 </article>
