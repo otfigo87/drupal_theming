@@ -98,16 +98,23 @@
   </div>
 
   <div{{ content_attributes }}>
-    {{ content }}
+    {{ content | without('comment', 'field_tags') }}
   </div>
 
 <h2>{{ label[0]['#context']['value'] | upper }}</h2>
 
 <div class="comment-wrapper">
-  {{ content.field_image }}
-  {{ content['comment']}}
+ {{ content.comment }}
 </div>
 
 <h1>{{ node.getChangedTime | format_date('custom', 'F j, Y') }}</h1>
+
+<div>{{ user.getRoles | safe_join(', ') }}</div>
+
+<div class="{{ user.getTimezone | clean_class }}">{{ user.getTimezone }}</div>
+
+
+
+
 
 </article>
