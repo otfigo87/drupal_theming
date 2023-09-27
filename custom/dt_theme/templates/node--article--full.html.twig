@@ -101,10 +101,13 @@
     {{ content }}
   </div>
 
-<h2>{{ label[0]['#context']['value'] }}</h2>
+<h2>{{ label[0]['#context']['value'] | upper }}</h2>
+
 <div class="comment-wrapper">
   {{ content.field_image }}
-
   {{ content['comment']}}
 </div>
+
+<h1>{{ node.getChangedTime | format_date('custom', 'F j, Y') }}</h1>
+
 </article>
