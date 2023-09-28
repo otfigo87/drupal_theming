@@ -68,11 +68,16 @@
  */
 #}
 
+{% set id = 'fullpagearticle' %}
+{% set id = 'node--'~ node.id %}
+
+{% set array_classes = ['class1', 'class2', 'class3'] %}
+
 {{ dump() }}
 
 {{ attach_library('dt_theme/node') }}
 
-<article {{attributes.addClass(['node','type--'~node.bundle,'view-mode--'~view_mode, not node.isPublished ? 'unpublished'])}}>
+<article {{attributes.addClass(array_classes).addClass(['node','type--'~node.bundle,'view-mode--'~view_mode, not node.isPublished ? 'unpublished'])}}>
 
 
   {{ title_prefix }}
