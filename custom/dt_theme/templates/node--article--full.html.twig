@@ -72,14 +72,15 @@
 {% set id = 'node--'~ node.id %}
 
 {%
-  set array_classes = ['class1',
+  set article_classes = ['class1',
                         'class2',
                         'class3',
                         'node',
                         'type--'~ node.bundle,
                         'view-mode--'~ view_mode,
-                         not node.isPublished ? 'unpublished',
+                         not node.isPublished ? 'unpublished' : 'published',
                         'author--' ~ node.getOwner.getAccountName | clean_class,
+
                         ]
 %}
 
@@ -88,7 +89,7 @@
 
 {{ attach_library('dt_theme/node') }}
 
-<article {{attributes.addClass(array_classes)}}>
+<article {{attributes.addClass(article_classes)}}>
 
 
   {{ title_prefix }}
@@ -138,9 +139,40 @@
 	<div>This is not your content</div>
 {% endif %}
 
+{% for class in article_classes %}
+  <div>{{loop.index0}}-{{ class }}</div>
+{% endfor %}
+
+{% for i in 0..10 %}
+  {{i}}
+{% endfor %}
+
+{% for class in empty_classes %}
+	<div>{{ loop.index }}:{{ class }}</div>
+{% else %}
+	<div>No empty_classes.</div>
+{% endfor %}
 
 
+ {% for class in empty_classes %}
+    <div>{{ loop.index }}: {{ class }}</div>
+  {% else %}
+    <div>No empty_classes.</div>
+  {% endfor %}
 
+
+{%
+    set items = ['item1', 'item2']
+  %}
+{% set items_length = items | length %}
+
+<div>
+	{% trans %}
+	  There is 1 item.
+	{% plural items_length %}
+	  There are {{ items_length }} items.
+	{% endtrans %}
+</div>
 
 
 </article>
