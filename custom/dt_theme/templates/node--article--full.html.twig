@@ -71,13 +71,24 @@
 {% set id = 'fullpagearticle' %}
 {% set id = 'node--'~ node.id %}
 
-{% set array_classes = ['class1', 'class2', 'class3'] %}
+{%
+  set array_classes = ['class1',
+                        'class2',
+                        'class3',
+                        'node',
+                        'type--'~ node.bundle,
+                        'view-mode--'~ view_mode,
+                         not node.isPublished ? 'unpublished',
+                        'author--' ~ node.getOwner.getAccountName | clean_class,
+                        ]
+%}
+
 
 {{ dump() }}
 
 {{ attach_library('dt_theme/node') }}
 
-<article {{attributes.addClass(array_classes).addClass(['node','type--'~node.bundle,'view-mode--'~view_mode, not node.isPublished ? 'unpublished'])}}>
+<article {{attributes.addClass(array_classes)}}>
 
 
   {{ title_prefix }}
@@ -117,6 +128,16 @@
 <div>{{ user.getRoles | safe_join(', ') }}</div>
 
 <div class="{{ user.getTimezone | clean_class }}">{{ user.getTimezone }}</div>
+
+
+{% if not logged_in %}
+	<div>You are not logged in.</div>
+{% elseif node.getOwner.id == user.id %}
+	<div>This is your content!</div>
+{% else %}
+	<div>This is not your content</div>
+{% endif %}
+
 
 
 
