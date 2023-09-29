@@ -78,18 +78,12 @@
   {% endif %}
   {{ title_suffix }}
 
-  {% if display_submitted %}
-    <footer>
-      {{ author_picture }}
-      <div{{ author_attributes }}>
-        {% trans %}Submitted by {{ author_name }} on {{ date }}{% endtrans %}
-        {{ metadata }}
-      </div>
-    </footer>
-  {% endif %}
+{% include directory ~ '/includes/node-display-submitted.html.twig' %}
 
+{% block content_area %}
   <div{{ content_attributes }}>
     {{ content }}
   </div>
+{% endblock %}
 
 </article>
