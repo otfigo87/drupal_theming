@@ -23,3 +23,16 @@ function dt_theme_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+function dt_theme_preprocess_user(&$variables){
+  $variables['user_contact_button'] = [
+    '#theme' => 'dt_theme_user_contact_button',
+    '#account' => $variables['user'],
+  ];
+  dump(())
+}
+
+function dt_theme_preprocess_dt_theme_user_contact_button(&$variables)
+{
+  $variables['#attached']['library'][] = 'dt_theme/user-contact-button';
+}

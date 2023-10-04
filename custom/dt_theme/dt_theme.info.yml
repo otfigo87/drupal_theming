@@ -7,6 +7,7 @@ base theme: stable9
 libraries:
   - dt_theme/global-styling
   - dt_theme/font-awesome
+  - dt_theme/bootstrap
   - dt_theme/global-scripts
 
 regions:
