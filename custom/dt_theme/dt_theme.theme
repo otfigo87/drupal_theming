@@ -29,7 +29,6 @@ function dt_theme_preprocess_user(&$variables){
     '#theme' => 'dt_theme_user_contact_button',
     '#account' => $variables['user'],
   ];
-  dump(())
 }
 
 function dt_theme_preprocess_dt_theme_user_contact_button(&$variables)
